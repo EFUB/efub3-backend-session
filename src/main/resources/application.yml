@@ -1,0 +1,11 @@
+spring: #띄어쓰기 없음
+  datasource: #띄어쓰기 2칸
+    driver-class-name: com.mysql.cj.jdbc.Driver #띄어쓰기 4칸
+    url: jdbc:mysql://localhost:3306/0404efubsession?createDatabaseIfNotExist=true&characterEncoding=UTF-8&characterSetResults=UTF-8 #띄어쓰기 4칸
+    username: root #띄어쓰기 4칸
+    password: gumball@04 #띄어쓰기 4칸
+  jpa: #띄어쓰기 2칸
+    hibernate: #띄어쓰기 4칸
+      ddl-auto: none #띄어쓰기 6칸 (프로젝트 최초 실행 시에는 새 스키마를 만들어야 하므로 create, 그 후로는 update로 수정)
+    generate-ddl: true #띄어쓰기 4칸
+    show-sql: true #띄어쓰기 4칸
