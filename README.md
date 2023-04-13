@@ -75,6 +75,22 @@ http://localhost:8080/posts/4?accountId=3
     }
     
 ```
-➕ `RequestParam`의 대상 변수(여기서는 accountId)는 맵핑하는 url에 적지 않아야한다.
+
+#### ➕ `RequestParam`의 대상 변수(여기서는 accountId)는 맵핑하는 url에 적지 않아야한다.
 ("/{postId}/{accountId}"라고 쓰면 안됨)
 이 부분이 헷갈려서 많이 헤맸다 😭
+
+#### ➕ for 반복문 대신 Java 8의 Stream API를 이용
+🔻for 반복문
+```java
+for (Post post : postList) {
+            responseDtoList.add(new PostResponseDto(post));
+        }
+```
+
+🔻Stream API
+```java
+responseDtoList = postList.stream()
+                .map(PostResponseDto::new)// map메소드는 Post 객체를 PostResponseDto 객체로 변환하기 위해 클래스의 생성자 사용
+                .collect(Collectors.toList()); // collect메소드는 List<PostResponseDto>로 변환
+```
