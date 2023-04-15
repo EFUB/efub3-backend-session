@@ -2,10 +2,12 @@ package efub.session.blog.post.service;
 
 
 import efub.session.blog.account.domain.Account;
+import efub.session.blog.account.exception.NotExistAccountException;
 import efub.session.blog.account.repository.AccountRepository;
 import efub.session.blog.post.domain.Post;
 import efub.session.blog.post.dto.PostModifyRequestDto;
 import efub.session.blog.post.dto.PostRequestDto;
+import efub.session.blog.post.exception.NotExistPostException;
 import efub.session.blog.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,7 @@ public class PostService {
     @Transactional
     public Post addPost(PostRequestDto postRequestDto) {
         Account writer = accountRepository.findById(postRequestDto.getAccountId())
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 계정"));
+                .orElseThrow(NotExistAccountException::new);
         return postRepository.save(
                 Post.builder()
                         .title(postRequestDto.getTitle())
@@ -40,13 +42,13 @@ public class PostService {
     @Transactional(readOnly = true)
 
     public Post findPost(Long postId) {
-        return postRepository.findById(postId).orElseThrow(() -> new IllegalArgumentException("no post exists"));
+        return postRepository.findById(postId).orElseThrow(NotExistPostException::new);
     }
 
     @Transactional
     public void removePost(Long postId, Long accountId) {
         Post post = postRepository.findByPostIdAndWriter_AccountId(postId, accountId)
-                .orElseThrow(() -> new IllegalArgumentException("no post exists"));
+                .orElseThrow(NotExistPostException::new);
         postRepository.delete(post);
 
     }
@@ -54,7 +56,7 @@ public class PostService {
     @Transactional
     public Post modifyPost(Long postId, PostModifyRequestDto requestDto) {
         Post post = postRepository.findByPostIdAndWriter_AccountId(postId, requestDto.getAccountId())
-                .orElseThrow(() -> new IllegalArgumentException("no post exists"));
+                .orElseThrow(NotExistPostException::new);
         post.updatePost(requestDto);
 
         return post;
