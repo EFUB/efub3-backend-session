@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/efubblogsession?createDatabaseIfNotExist=true&characterEncoding=UTF-8&characterSetResults=UTF-8
-    username: root
-    password: gkssk0226!
-  jpa:
-    hibernate:
-      ddl-auto: update
-    generate-ddl: true
-    show-sql: true
-=======
 spring: #띄어쓰기 없음
   datasource: #띄어쓰기 2칸
     driver-class-name: com.mysql.cj.jdbc.Driver #띄어쓰기 4칸
@@ -22,4 +9,3 @@ spring: #띄어쓰기 없음
       ddl-auto: update #띄어쓰기 6칸
     generate-ddl: true #띄어쓰기 4칸
     show-sql: true #띄어쓰기 4칸
->>>>>>> d999b0a (feat: account와 post CRUD 구현)
