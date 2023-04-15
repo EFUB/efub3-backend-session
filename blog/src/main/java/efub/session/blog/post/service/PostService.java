@@ -14,6 +14,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class PostService {
 
     private final PostRepository postRepository;
