@@ -13,7 +13,7 @@ public class PostResponseDto {
     private String writerName;
     private String title;
     private String content;
-    private LocalDateTime createdDime;
+    private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
     public PostResponseDto(Post post) {
@@ -21,7 +21,7 @@ public class PostResponseDto {
         this.writerName = post.getWriter().getNickname();
         this.title = post.getTitle();
         this.content = post.getContent();
-        this.createdDime = post.getCreatedDate();
+        this.createdDate = post.getCreatedDate();
         this.modifiedDate = post.getModifiedDate();
     }
 }
