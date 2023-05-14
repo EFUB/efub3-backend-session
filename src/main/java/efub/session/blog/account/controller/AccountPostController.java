@@ -1,9 +1,9 @@
-package efub.session.blog.domain.account.controller;
+package efub.session.blog.account.controller;
 
-import efub.session.blog.domain.account.service.AccountService;
-import efub.session.blog.domain.post.domain.Post;
-import efub.session.blog.domain.post.dto.response.PostListResponseDto;
-import efub.session.blog.domain.post.service.PostService;
+import efub.session.blog.account.service.AccountService;
+import efub.session.blog.post.domain.Post;
+import efub.session.blog.post.dto.response.PostListResponseDto;
+import efub.session.blog.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

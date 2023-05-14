@@ -1,4 +1,4 @@
-package efub.session.blog.domain.post.controller;
+package efub.session.blog.post.controller;
 
 import efub.session.blog.domain.comment.domain.Comment;
 import efub.session.blog.domain.comment.dto.CommentRequestDto;

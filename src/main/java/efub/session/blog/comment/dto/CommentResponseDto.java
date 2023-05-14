@@ -1,6 +1,6 @@
-package efub.session.blog.domain.comment.dto;
+package efub.session.blog.comment.dto;
 
-import efub.session.blog.domain.comment.domain.Comment;
+import efub.session.blog.comment.domain.Comment;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

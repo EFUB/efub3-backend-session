@@ -1,4 +1,4 @@
-package efub.session.blog.domain.comment.domain;
+package efub.session.blog.comment.domain;
 
 import efub.session.blog.domain.account.domain.Account;
 import efub.session.blog.domain.post.domain.Post;

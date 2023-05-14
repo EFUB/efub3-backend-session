@@ -1,12 +1,12 @@
-package efub.session.blog.domain.comment.service;
+package efub.session.blog.comment.service;
 
-import efub.session.blog.domain.account.domain.Account;
-import efub.session.blog.domain.account.service.AccountService;
-import efub.session.blog.domain.comment.domain.Comment;
-import efub.session.blog.domain.comment.dto.CommentRequestDto;
-import efub.session.blog.domain.comment.repository.CommentRepository;
-import efub.session.blog.domain.post.domain.Post;
-import efub.session.blog.domain.post.service.PostService;
+import efub.session.blog.account.domain.Account;
+import efub.session.blog.account.service.AccountService;
+import efub.session.blog.comment.domain.Comment;
+import efub.session.blog.comment.dto.CommentRequestDto;
+import efub.session.blog.comment.repository.CommentRepository;
+import efub.session.blog.post.domain.Post;
+import efub.session.blog.post.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.event.spi.PostInsertEvent;
 import org.springframework.stereotype.Service;

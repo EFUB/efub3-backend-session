@@ -1,8 +1,8 @@
-package efub.session.blog.domain.comment.repository;
+package efub.session.blog.comment.repository;
 
-import efub.session.blog.domain.account.domain.Account;
-import efub.session.blog.domain.comment.domain.Comment;
-import efub.session.blog.domain.post.domain.Post;
+import efub.session.blog.account.domain.Account;
+import efub.session.blog.comment.domain.Comment;
+import efub.session.blog.post.domain.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

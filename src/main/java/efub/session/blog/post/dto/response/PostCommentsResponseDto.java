@@ -1,4 +1,4 @@
-package efub.session.blog.domain.post.dto.response;
+package efub.session.blog.post.dto.response;
 
 import efub.session.blog.domain.comment.domain.Comment;
 import lombok.AccessLevel;
