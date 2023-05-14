@@ -12,7 +12,8 @@ import javax.validation.constraints.NotBlank;
 public class AccountUpdateRequestDto {
 
 	private String bio;
-	@NotBlank(message = "닉네임은 필수값입니다. ")
+
+	@NotBlank(message = "닉네임은 필수값입니다.")
 	private String nickname;
 
 	@Builder

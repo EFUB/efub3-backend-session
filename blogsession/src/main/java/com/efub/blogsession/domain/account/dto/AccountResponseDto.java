@@ -14,11 +14,17 @@ public class AccountResponseDto {
 	private String nickname;
 	private String bio;
 
+	public AccountResponseDto(Long accountId, String email, String nickname, String bio) {
+		this.accountId = accountId;
+		this.email = email;
+		this.nickname = nickname;
+		this.bio = bio;
+	}
 
-	public AccountResponseDto(Account account) {
-		this.accountId = account.getAccountId();
-		this.email = account.getEmail();
-		this.nickname = account.getNickname();
-		this.bio = account.getBio();
+	public static AccountResponseDto from(Account account) {
+		return new AccountResponseDto(account.getAccountId(),
+				account.getEmail(),
+				account.getNickname(),
+				account.getBio());
 	}
 }

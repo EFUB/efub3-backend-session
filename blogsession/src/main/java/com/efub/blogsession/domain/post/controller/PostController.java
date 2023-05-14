@@ -11,50 +11,47 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostController {
+
     private final PostService postService;
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public PostResponseDto postAdd(@RequestBody PostRequestDto requestDto) {   // request가 JSON으로 들어간다는 의미
-        Post post = postService.addPost(requestDto);
-        return new PostResponseDto(post);
+    public PostResponseDto postAdd(@RequestBody PostRequestDto postRequestDto) {
+        Post post = postService.addPost(postRequestDto);
+        return PostResponseDto.from(post);
     }
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
     public List<PostResponseDto> postListFind() {
         List<Post> postList = postService.findPostList();
-        List<PostResponseDto> responseDtoList = new ArrayList<>();
-
-        for (Post post : postList) {
-            responseDtoList.add(new PostResponseDto(post));
-        }
-        return responseDtoList;
+        return postList.stream().map(PostResponseDto::from).collect(Collectors.toList());
     }
 
     @GetMapping("/{postId}")
     @ResponseStatus(value = HttpStatus.OK)
     public PostResponseDto postFind(@PathVariable Long postId) {
         Post post = postService.findPost(postId);
-        return new PostResponseDto(post);
+        return PostResponseDto.from(post);
     }
 
-    @DeleteMapping("/{postId}/{accountId}")
+    @DeleteMapping("/{postId}")
     @ResponseStatus(value = HttpStatus.OK)
     public String postRemove(@PathVariable Long postId, @RequestParam Long accountId) {
         postService.removePost(postId, accountId);
-        return "성공적으로 삭제되었습니다.";
+        return "성공적으로 삭제가 완료되었습니다.";
     }
 
     @PutMapping("/{postId}")
     @ResponseStatus(value = HttpStatus.OK)
     public PostResponseDto postModify(@PathVariable Long postId, @RequestBody PostModifyRequestDto requestDto) {
         Post post = postService.modifyPost(postId, requestDto);
-        return new PostResponseDto(post);
+        return PostResponseDto.from(post);
     }
 }
