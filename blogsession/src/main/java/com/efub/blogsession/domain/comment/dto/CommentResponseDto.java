@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-// 애노테이션 추가하기!
+// 애노테이션 추가하기
 public class CommentResponseDto {
 
     private Long commentId;
