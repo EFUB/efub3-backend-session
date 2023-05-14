@@ -32,4 +32,19 @@ public class CommentController {
     // 댓글 수정
 
     // 댓글 삭제
+
+    // 댓글 좋아요
+    @PostMapping("/hearts")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public String createCommentHeart(@PathVariable final Long commentId, @RequestBody final AccountInfoRequestDto requestDto) {
+        commentHeartService.create(commentId, requestDto);
+        return "좋아요를 눌렀습니다.";
+    }
+
+    @DeleteMapping("/hearts")
+    @ResponseStatus(value = HttpStatus.OK)
+    public String deleteCommentHeart(@PathVariable final Long commentId, @RequestParam final Long accountId) {
+        commentHeartService.delete(commentId, accountId);
+        return "좋아요가 취소되었습니다.";
+    }
 }
