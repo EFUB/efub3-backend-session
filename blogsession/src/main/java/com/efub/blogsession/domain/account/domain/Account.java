@@ -1,16 +1,13 @@
 package com.efub.blogsession.domain.account.domain;
 
+import com.efub.blogsession.domain.comment.domain.Comment;
 import com.efub.blogsession.global.entity.BaseTimeEntity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.xml.stream.events.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.efub.blogsession.domain.account.domain.AccountStatus.REGISTERED;
-import static com.efub.blogsession.domain.account.domain.AccountStatus.UNREGISTERED;
 
 
 @Entity

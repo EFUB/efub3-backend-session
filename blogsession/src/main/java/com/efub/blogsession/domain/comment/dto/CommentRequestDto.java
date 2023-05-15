@@ -1,13 +1,13 @@
 package com.efub.blogsession.domain.comment.dto;
 
 import com.efub.blogsession.domain.account.domain.Account;
+import com.efub.blogsession.domain.comment.domain.Comment;
 import com.efub.blogsession.domain.post.domain.Post;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
-import javax.xml.stream.events.Comment;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

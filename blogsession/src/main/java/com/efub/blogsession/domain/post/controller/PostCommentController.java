@@ -3,6 +3,7 @@ package com.efub.blogsession.domain.post.controller;
 import com.efub.blogsession.domain.account.domain.Account;
 import com.efub.blogsession.domain.account.dto.AccountCommentsResponseDto;
 import com.efub.blogsession.domain.account.service.AccountService;
+import com.efub.blogsession.domain.comment.domain.Comment;
 import com.efub.blogsession.domain.comment.dto.CommentRequestDto;
 import com.efub.blogsession.domain.comment.dto.CommentResponseDto;
 import com.efub.blogsession.domain.comment.service.CommentService;
@@ -11,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.xml.stream.events.Comment;
 import java.util.List;
 
 @RestController

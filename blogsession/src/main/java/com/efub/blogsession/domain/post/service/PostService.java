@@ -1,7 +1,6 @@
 package com.efub.blogsession.domain.post.service;
 
 import com.efub.blogsession.domain.account.domain.Account;
-import com.efub.blogsession.domain.account.repository.AccountRepository;
 import com.efub.blogsession.domain.account.service.AccountService;
 import com.efub.blogsession.domain.post.domain.Post;
 import com.efub.blogsession.domain.post.dto.PostModifyRequestDto;

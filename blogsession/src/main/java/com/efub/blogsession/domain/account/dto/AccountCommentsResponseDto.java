@@ -1,11 +1,11 @@
 package com.efub.blogsession.domain.account.dto;
 
+import com.efub.blogsession.domain.comment.domain.Comment;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.xml.stream.events.Comment;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -6,9 +6,7 @@ import com.efub.blogsession.domain.account.dto.AccountUpdateRequestDto;
 import com.efub.blogsession.domain.account.dto.SignUpRequestDto;
 import com.efub.blogsession.domain.account.service.AccountService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

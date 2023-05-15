@@ -2,6 +2,7 @@ package com.efub.blogsession.domain.comment.service;
 
 import com.efub.blogsession.domain.account.domain.Account;
 import com.efub.blogsession.domain.account.service.AccountService;
+import com.efub.blogsession.domain.comment.domain.Comment;
 import com.efub.blogsession.domain.comment.dto.CommentRequestDto;
 import com.efub.blogsession.domain.comment.repository.CommentRepository;
 import com.efub.blogsession.domain.post.domain.Post;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import javax.xml.stream.events.Comment;
 import java.util.List;
 
 @Service

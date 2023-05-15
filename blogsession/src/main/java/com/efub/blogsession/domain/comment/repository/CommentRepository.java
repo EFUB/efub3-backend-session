@@ -1,10 +1,10 @@
 package com.efub.blogsession.domain.comment.repository;
 
 import com.efub.blogsession.domain.account.domain.Account;
+import com.efub.blogsession.domain.comment.domain.Comment;
 import com.efub.blogsession.domain.post.domain.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.xml.stream.events.Comment;
 import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {

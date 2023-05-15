@@ -1,6 +1,7 @@
 package com.efub.blogsession.domain.post.domain;
 
 import com.efub.blogsession.domain.account.domain.Account;
+import com.efub.blogsession.domain.comment.domain.Comment;
 import com.efub.blogsession.domain.post.dto.PostModifyRequestDto;
 import com.efub.blogsession.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
@@ -9,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.xml.stream.events.Comment;
 import java.util.ArrayList;
 import java.util.List;
 
