@@ -2,6 +2,7 @@ package efub.session.blog.post.service;
 
 import efub.session.blog.account.domain.Account;
 import efub.session.blog.account.repository.AccountRepository;
+import efub.session.blog.account.service.AccountService;
 import efub.session.blog.post.domain.Post;
 import efub.session.blog.post.dto.PostModifyRequestDto;
 import efub.session.blog.post.dto.PostRequestDto;
@@ -17,6 +18,8 @@ import java.util.List;
 public class PostService {
     private final PostRepository postRepository;
     private final AccountRepository accountRepository;
+
+    private final AccountService accountService;
 
     @Transactional
     public Post addPost(PostRequestDto requestDto) {
@@ -52,5 +55,11 @@ public class PostService {
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 접근입니다."));
         post.updatePost(requestDto);
         return post;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Post> findPostListByWriter(Long accountId) {
+        Account writer = accountService.findAccountById(accountId);
+        return postRepository.findAllByWriter(writer);
     }
 }
