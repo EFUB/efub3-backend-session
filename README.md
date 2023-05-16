@@ -94,3 +94,16 @@ responseDtoList = postList.stream()
                 .map(PostResponseDto::new)// map메소드는 Post 객체를 PostResponseDto 객체로 변환하기 위해 클래스의 생성자 사용
                 .collect(Collectors.toList()); // collect메소드는 List<PostResponseDto>로 변환
 ```
+
+---
+
+### ⭐ Comment CR 
+🔻댓글 작성 POST
+http://localhost:8080/posts/{post_id}/comments
+![image](https://github.com/chhaewxn/efub3-backend-session/assets/96541582/051f4153-f75c-4c22-a3c0-704abb97b8d4)
+
+🔻댓글 조회 GET
+http://localhost:8080/posts/{post_id}/comments
+![image](https://github.com/chhaewxn/efub3-backend-session/assets/96541582/84de7ba7-cffd-4997-9844-7cfcb3c796ab)
+
+

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/posts") // 경로 맵핑
@@ -23,27 +24,21 @@ public class PostController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public PostResponseDto postAdd(@RequestBody PostRequestDto requestDto){
         Post post = postService.addPost(requestDto);
-        return new PostResponseDto(post);
+        return PostResponseDto.from(post);
     }
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
     public List<PostResponseDto> postListFind() {
         List<Post> postList = postService.findPostList();
-        List<PostResponseDto> responseDtoList = new ArrayList<>();
-
-        for (Post post : postList) {
-            responseDtoList.add(new PostResponseDto(post));
-        } // stream으로 한줄로 바꾸는것 시도해보기!
-
-        return responseDtoList;
+        return postList.stream().map(PostResponseDto::from).collect(Collectors.toList());
     }
 
     @GetMapping("/{postId}")
     @ResponseStatus(value = HttpStatus.OK)
     public PostResponseDto postFind(@PathVariable Long postId) {
         Post post = postService.findPost(postId);
-        return new PostResponseDto(post);
+        return PostResponseDto.from(post);
     }
 
     @DeleteMapping("/{postId}")
@@ -57,7 +52,7 @@ public class PostController {
     @ResponseStatus(value = HttpStatus.OK)
     public PostResponseDto postModify(@PathVariable Long postId, @RequestBody PostModifyRequestDto requestDto){
         Post post = postService.modifyPost(postId, requestDto);
-        return new PostResponseDto(post);
+        return PostResponseDto.from(post);
     }
 
 }

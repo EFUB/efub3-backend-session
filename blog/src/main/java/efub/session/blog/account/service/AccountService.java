@@ -5,7 +5,6 @@ import efub.session.blog.account.dto.AccountUpdateRequestDto;
 import efub.session.blog.account.dto.SignUpRequestDto;
 import efub.session.blog.account.repository.AccountRepository;
 import javax.persistence.EntityNotFoundException;
-// import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
