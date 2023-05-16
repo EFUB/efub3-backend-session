@@ -1,6 +1,7 @@
 package efub.session.blog.post.domain;
 
 import efub.session.blog.account.domain.Account;
+import efub.session.blog.comment.domain.Comment;
 import efub.session.blog.global.entity.BaseTimeEntity;
 import efub.session.blog.post.dto.PostModifyRequestDto;
 import lombok.Builder;
@@ -8,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -15,18 +18,25 @@ import javax.persistence.*;
 public class Post extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto-increment
-    private Long postId;    // 자바에서는 postId, SQL에서는 post_id 라고 쓰는 게 일반적. 스프링은 두 형식 사이 매핑을 자동으로 해준다.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_id", updatable = false)
+    private Long postId;
 
     @Column
     private String title;
 
-    @Column(columnDefinition = "TEXT")  // MySQL 상에서 TEXT로 선언되는 컬럼이라는 것을 표시
+    @Column
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "account_id")    // Account 객체의 ID가 account_id라는 foreign key로 Post 테이블에 포함됨
-    private Account writer; // 이 post의 작성자를 가리키는 컬럼이므로 이름을 writer로 설정
+    @JoinColumn(name = "account_id")
+    private Account writer;
+
+    // mappedBy : 연관 관계의 주인(Owner)
+    // cascade : 엔티티 삭제 시 연관된 엔티티의 처리 방식
+    // orphanRemoval : 고아 객체(연관된 부모 엔티티가 없는 자식 엔티티)의 처리 방식
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> commentList = new ArrayList<>();
 
     @Builder
     public Post(Long postId, String title, String content, Account writer) {
