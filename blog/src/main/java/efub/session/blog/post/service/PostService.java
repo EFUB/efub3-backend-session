@@ -1,10 +1,10 @@
 package efub.session.blog.post.service;
 
 import efub.session.blog.account.domain.Account;
-import efub.session.blog.account.repository.AccountRepository;
+import efub.session.blog.account.service.AccountService;
 import efub.session.blog.post.domain.Post;
-import efub.session.blog.post.dto.PostModifyRequestDto;
-import efub.session.blog.post.dto.PostRequestDto;
+import efub.session.blog.post.dto.request.PostModifyRequestDto;
+import efub.session.blog.post.dto.request.PostRequestDto;
 import efub.session.blog.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,13 +18,11 @@ import java.util.List;
 public class PostService {
 
     private final PostRepository postRepository;
-    private final AccountRepository accountRepository;
+    private final AccountService accountService;
 
     @Transactional
     public Post addPost(PostRequestDto requestDto){
-        Account writer = accountRepository.findById(requestDto.getAccountId())
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 계정입니다")); // IllegalAccessException으로 잘못 넣지 않도록
-
+        Account writer = accountService.findAccountById(requestDto.getAccountId());
         return postRepository.save(
                 Post.builder()
                         .title(requestDto.getTitle())
@@ -34,10 +32,12 @@ public class PostService {
         );
     }
 
+    @Transactional(readOnly = true)
     public List<Post> findPostList(){
         return postRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Post findPost(Long postId) {
         return postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시글입니다."));
@@ -54,5 +54,11 @@ public class PostService {
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 접근입니다."));
         post.updatePost(requestDto);
         return post;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Post> findPostListByWriter(Long accountId) {
+        Account writer = accountService.findAccountById(accountId);
+        return postRepository.findAllByWriter(writer);
     }
 }
