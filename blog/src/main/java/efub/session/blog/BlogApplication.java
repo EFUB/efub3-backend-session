@@ -1,4 +1,4 @@
-package efub.session.blog;
+//package efub.session.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
