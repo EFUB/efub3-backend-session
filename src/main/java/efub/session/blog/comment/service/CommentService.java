@@ -21,11 +21,11 @@ public class CommentService {
 
     // 의존관계 : CommentService -> CommentRepository
     private final CommentRepository commentRepository;
+    // 의존관계 : CommentService -> PostService
     private final PostService postService;
+    // 의존관계 : CommentService -> AccountService
     private final AccountService accountService;
 
-    // 의존관계 : CommentService -> PostService
-    // 의존관계 : CommentService -> AccountService
 
     // 댓글 작성
     public Long createComment(Long postId, CommentRequestDto requestDto){
@@ -52,6 +52,16 @@ public class CommentService {
     public List<Comment> findCommentListByPost(Long postId){
         Post post= postService.findPost(postId);
         return commentRepository.findAllByPost(post);
+    }
+
+    //댓글 수정
+    public void updateComment(CommentRequestDto requestDto, Long commentId){
+        Comment comment = findCommentById(commentId);
+        comment.updateComment(requestDto.getContent());
+    }
+    public void deleteComment(Long commentId){
+        Comment comment = findCommentById(commentId);
+        commentRepository.delete(comment);
     }
 
 }
