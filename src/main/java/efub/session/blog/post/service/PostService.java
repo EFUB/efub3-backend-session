@@ -54,4 +54,10 @@ public class PostService {
         post.updatePost(requestDto);
         return post;
     }
+
+    public List<Post> findPostListByWriter(Long accountId){
+        Account account = accountRepository.findAccountById(accountId)
+                .orElseThrow(()->new IllegalArgumentException("잘못된 접근입니다."));
+        return postRepository.findAllByWriter(account);
+    }
 }

@@ -1,6 +1,7 @@
 package efub.session.blog.account.service;
 
 import efub.session.blog.account.domain.Account;
+import efub.session.blog.account.dto.AccountUpdateRequestDto;
 import efub.session.blog.account.dto.SignUpRequestDto;
 import efub.session.blog.account.repostitory.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,18 @@ public class AccountService {
     public Account findAccountById(Long id){
         return accountRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("해당 id를 가진 Account를 찾을 수 없습니다. id="+id));
+    }
+
+    public Long update(Long accountId, AccountUpdateRequestDto requestDto) {
+        Account account = findAccountById(accountId);
+        account.updateAccount(requestDto.getBio(), requestDto.getNickname());
+        return account.getAccountId();
+    }
+
+    @Transactional
+    public void withdraw(Long accountId) {
+        Account account = findAccountById(accountId);
+        account.withdrawAccount();
     }
     public void delete(Long accountId){
         Account account=findAccountById(accountId);

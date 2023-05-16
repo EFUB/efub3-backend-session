@@ -40,4 +40,13 @@ public class Account extends BaseTimeEntity {
         this.status=AccountStatus.REGISTERED;
     }
 
+    public void updateAccount(String bio, String nickname) {
+        this.bio = bio;
+        this.nickname = nickname;
+    }
+
+    public void withdrawAccount() {
+        this.status = AccountStatus.UNREGISTERED;
+    }
+
 }
