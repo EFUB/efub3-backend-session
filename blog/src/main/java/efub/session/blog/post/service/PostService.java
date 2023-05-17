@@ -15,7 +15,10 @@ import java.util.List;
 
 @Service
 @Transactional
+<<<<<<<<< Temporary merge branch 1
+=========
 @RequiredArgsConstructor
+>>>>>>>>> Temporary merge branch 2
 public class PostService {
 
     private final PostRepository postRepository;
@@ -63,4 +66,3 @@ public class PostService {
         return postRepository.findAllByWriter(writer);
     }
 }
-
