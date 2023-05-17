@@ -4,6 +4,7 @@ import efub.session.blog.account.domain.Account;
 import efub.session.blog.comment.domain.Comment;
 import efub.session.blog.post.domain.Post;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,3 +28,13 @@ public class CommentRequestDto {
                 .content(this.content)
                 .build();
     }
+
+    @Builder
+    public CommentRequestDto(Long accountId,String content){
+        this.accountId=accountId;
+        this.content=content;
+    }
+
+
+
+}
