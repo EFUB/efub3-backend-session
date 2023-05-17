@@ -9,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,6 +32,9 @@ public class Comment extends BaseTimeEntity {
     @JoinColumn(name="account_id",nullable = false,updatable = false)
     private Account writer;
 
+    //2.comment domain에 엔티티 매핑
+    @OneToMany(mappedBy = "comment",cascade = CascadeType.ALL,orphanRemoval = true)
+    List<CommentHeart> commentHeartList=new ArrayList<>();
 
     @Builder
     public Comment(Long commentId, String content, Post post, Account writer) {
@@ -37,6 +42,11 @@ public class Comment extends BaseTimeEntity {
         this.content = content;
         this.post = post;
         this.writer = writer;
+    }
+
+    //댓글 수정
+    public void updateComment(String content){
+        this.content = content;
     }
 }
 

@@ -1,5 +1,8 @@
 package com.efub.blogsession.domain.post.controller;
 
+import com.efub.blogsession.domain.Heart.domain.PostHeart;
+import com.efub.blogsession.domain.Heart.dto.HeartRequestDto;
+import com.efub.blogsession.domain.Heart.service.PostHeartService;
 import com.efub.blogsession.domain.post.domain.Post;
 import com.efub.blogsession.domain.post.dto.PostModifyRequestDto;
 import com.efub.blogsession.domain.post.dto.PostRequestDto;
@@ -18,6 +21,7 @@ import java.util.stream.Collectors;
 public class PostController {
 
     private final PostService postService;
+    private final PostHeartService postHeartService;
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
@@ -52,5 +56,19 @@ public class PostController {
     public PostResponseDto postModify(@PathVariable Long postId, @RequestBody PostModifyRequestDto requestDto) {
         Post post = postService.modifyPost(postId, requestDto);
         return PostResponseDto.from(post);
+    }
+
+    @PostMapping("/{postId}/hearts")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public String createPostHeart(@PathVariable final Long postId, @RequestBody final HeartRequestDto requestDto){
+        postHeartService.create(postId,requestDto.getAccountId());
+        return"좋아요를 눌렀습니다.";
+    }
+
+    @DeleteMapping("/{postId}/hearts")
+    @ResponseStatus(value = HttpStatus.OK)
+    public String deletePostHeart(@PathVariable final Long postId, @RequestBody final Long accountId){
+        postHeartService.delete(postId,accountId);
+        return"좋아요가 취소되었습니다.";
     }
 }
