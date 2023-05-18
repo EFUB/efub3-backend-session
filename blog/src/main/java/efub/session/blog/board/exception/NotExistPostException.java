@@ -1,4 +1,4 @@
-package efub.session.blog.post.exception;
+package efub.session.blog.board.exception;
 
 public class NotExistPostException extends RuntimeException{
     public NotExistPostException(){

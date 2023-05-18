@@ -1,9 +1,8 @@
-package efub.session.blog.post.domain;
+package efub.session.blog.board.domain;
 
 import efub.session.blog.account.domain.Account;
 import efub.session.blog.global.entity.BaseTimeEntity;
-import efub.session.blog.post.dto.PostModifyRequestDto;
-import efub.session.blog.post.dto.PostResponseDto;
+import efub.session.blog.board.dto.request.PostModifyRequestDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

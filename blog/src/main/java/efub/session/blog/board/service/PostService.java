@@ -1,13 +1,13 @@
-package efub.session.blog.post.service;
+package efub.session.blog.board.service;
 
 
 import efub.session.blog.account.domain.Account;
 import efub.session.blog.account.exception.NotExistAccountException;
 import efub.session.blog.account.repository.AccountRepository;
-import efub.session.blog.post.domain.Post;
-import efub.session.blog.post.dto.PostModifyRequestDto;
-import efub.session.blog.post.dto.PostRequestDto;
-import efub.session.blog.post.exception.NotExistPostException;
+import efub.session.blog.board.domain.Post;
+import efub.session.blog.board.dto.request.PostModifyRequestDto;
+import efub.session.blog.board.dto.request.PostRequestDto;
+import efub.session.blog.board.exception.NotExistPostException;
 import efub.session.blog.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,17 +1,16 @@
-package efub.session.blog.post.controller;
+package efub.session.blog.board.controller;
 
 
-import efub.session.blog.post.domain.Post;
-import efub.session.blog.post.dto.PostModifyRequestDto;
-import efub.session.blog.post.dto.PostRequestDto;
-import efub.session.blog.post.dto.PostResponseDto;
-import efub.session.blog.post.service.PostService;
+import efub.session.blog.board.domain.Post;
+import efub.session.blog.board.dto.request.PostModifyRequestDto;
+import efub.session.blog.board.dto.request.PostRequestDto;
+import efub.session.blog.board.dto.response.PostResponseDto;
+import efub.session.blog.board.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

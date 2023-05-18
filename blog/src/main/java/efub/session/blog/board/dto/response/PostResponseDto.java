@@ -1,6 +1,6 @@
-package efub.session.blog.post.dto;
+package efub.session.blog.board.dto.response;
 
-import efub.session.blog.post.domain.Post;
+import efub.session.blog.board.domain.Post;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
