@@ -23,7 +23,7 @@ public class AccountController {
     public AccountResponseDto signUp(@RequestBody @Valid final SignUpRequestDto requestDto) {
         Long id = accountService.signUp(requestDto);
         Account findAccount = accountService.findAccountById(id);
-        return AccountResponseDto.from(findAccount);
+        return new AccountResponseDto(findAccount);
     }
 
     /* 계정 조회 기능 (1명) */
@@ -31,7 +31,7 @@ public class AccountController {
     @ResponseStatus(value = HttpStatus.OK)
     public AccountResponseDto getAccount(@PathVariable Long accountId) {
         Account findAccount = accountService.findAccountById(accountId);
-        return AccountResponseDto.from(findAccount);
+        return new AccountResponseDto(findAccount);
     }
 
     /* 계정 프로필 수정 */
@@ -40,7 +40,8 @@ public class AccountController {
     public AccountResponseDto update(@PathVariable final Long accountId, @RequestBody @Valid final AccountUpdateRequestDto requestDto) {
         Long id = accountService.update(accountId, requestDto);
         Account findAccount = accountService.findAccountById(id);
-        return AccountResponseDto.from(findAccount);
+
+        return new AccountResponseDto(findAccount);
     }
 
     /* 계정 삭제 (휴면 계정으로) */
