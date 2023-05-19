@@ -17,7 +17,7 @@ import javax.validation.Valid;
 public class AccountController {
     private final AccountService accountService;
 
-    /* 계정 생성 기능 */
+    // 계정 생성 기능
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public AccountResponseDto signUp(@RequestBody @Valid final SignUpRequestDto requestDto) {
@@ -26,7 +26,7 @@ public class AccountController {
         return new AccountResponseDto(findAccount);
     }
 
-    /* 계정 조회 기능 (1명) */
+    // 계정 조회 기능 (1명)
     @GetMapping("/{accountId}")
     @ResponseStatus(value = HttpStatus.OK)
     public AccountResponseDto getAccount(@PathVariable Long accountId) {
@@ -34,7 +34,7 @@ public class AccountController {
         return new AccountResponseDto(findAccount);
     }
 
-    /* 계정 프로필 수정 */
+    // 계정 프로필 수정
     @PatchMapping("/profile/{accountId}")
     @ResponseStatus(value = HttpStatus.OK)
     public AccountResponseDto update(@PathVariable final Long accountId, @RequestBody @Valid final AccountUpdateRequestDto requestDto) {
@@ -44,7 +44,7 @@ public class AccountController {
         return new AccountResponseDto(findAccount);
     }
 
-    /* 계정 삭제 (휴면 계정으로) */
+    // 계정 삭제 (휴면 계정으로)
     @PatchMapping("/{accountId}")
     @ResponseStatus(value = HttpStatus.OK)
     public String withdraw(@PathVariable long accountId) {
@@ -52,7 +52,7 @@ public class AccountController {
         return "성공적으로 탈퇴가 완료되었습니다.";
     }
 
-    /* 계정 삭제 (db에서도 삭제) */
+    // 계정 삭제 (db에서도 삭제)
     @DeleteMapping("/{accountId}")
     @ResponseStatus(value = HttpStatus.OK)
     public String delete(@PathVariable long accountId) {
