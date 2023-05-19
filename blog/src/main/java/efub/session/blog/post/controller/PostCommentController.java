@@ -18,14 +18,6 @@ import java.util.List;
 public class PostCommentController {
     private final CommentService commentService;
 
-    // 특정 게시글의 댓글 목록 조회
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public PostCommentsResponseDto readPostComments(@PathVariable Long postId) {
-        List<Comment> commentList = commentService.findCommentListByPost(postId);
-        return PostCommentsResponseDto.of(postId, commentList);
-    }
-
     // 특정 게시글의 댓글 생성
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -33,5 +25,13 @@ public class PostCommentController {
         Long commentId = commentService.createComment(postId, requestDto);
         Comment comment = commentService.findCommentById(commentId);
         return CommentResponseDto.of(comment);
+    }
+
+    // 특정 게시글의 댓글 목록 조회
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public PostCommentsResponseDto readPostComments(@PathVariable Long postId) {
+        List<Comment> commentList = commentService.findCommentListByPost(postId);
+        return PostCommentsResponseDto.of(postId, commentList);
     }
 }
