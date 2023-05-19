@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -18,7 +18,7 @@ public class PostListResponseDto {
 
     public static PostListResponseDto of(List<Post> postList) {
         return PostListResponseDto.builder()
-                .posts(new ArrayList<PostResponseDto>())
+                .posts(postList.stream().map(PostResponseDto::from).collect(Collectors.toList()))
                 .count(postList.size())
                 .build();
     }
