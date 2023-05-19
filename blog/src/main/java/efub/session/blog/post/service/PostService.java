@@ -15,13 +15,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class PostService {
     private final PostRepository postRepository;
     private final AccountRepository accountRepository;
 
     private final AccountService accountService;
 
-    @Transactional
     public Post addPost(PostRequestDto requestDto) {
         Account writer = accountRepository.findById(requestDto.getAccountId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 계정입니다."));
