@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.xml.stream.events.Comment;
+import efub.session.blog.comment.domain.Comment;
 
 @Entity
 @Getter

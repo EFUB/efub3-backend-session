@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.xml.stream.events.Comment;
+import efub.session.blog.comment.domain.Comment;
 
 @Slf4j
 @Service
