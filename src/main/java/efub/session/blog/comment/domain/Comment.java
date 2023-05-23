@@ -3,6 +3,7 @@ package efub.session.blog.comment.domain;
 
 import efub.session.blog.global.entity.BaseTimeEntity;
 import efub.session.blog.account.domain.Account;
+import efub.session.blog.heart.domain.CommentHeart;
 import efub.session.blog.post.domain.Post;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,6 +33,9 @@ public class Comment extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)  // Comment가 Many, Account(작성자)가 One
     @JoinColumn(name = "account_id", nullable = false, updatable = false)
     private Account writer;
+
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<CommentHeart> commentHeartList = new ArrayList<>();
 
     @Builder    // 이게 없다면 일일히 코드를 쳐서 Builder 클래스를 만들어야 함. 요즘은 아무도 그렇게 안 하고 @Builder 를 씀.
     public Comment(String content, Post post, Account writer) {
