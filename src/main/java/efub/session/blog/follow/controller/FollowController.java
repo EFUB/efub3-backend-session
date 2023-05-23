@@ -40,7 +40,7 @@ public class FollowController {
         return FollowListResponseDto.of(followerList, followingList);
     }
 
-    @GetMapping("/{accountId}/serach")
+    @GetMapping("/{accountId}/search")
     @ResponseStatus(value=HttpStatus.OK)
     public FollowStatusResponseDto searchAccount(@PathVariable final Long accountId, @RequestParam final String email){
         Account searchAccount = accountService.findAccountByEmail(email);
