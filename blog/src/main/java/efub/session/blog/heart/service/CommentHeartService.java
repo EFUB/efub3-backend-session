@@ -1,6 +1,7 @@
 package efub.session.blog.heart.service;
 
 import efub.session.blog.account.domain.Account;
+import efub.session.blog.comment.domain.Comment;
 import efub.session.blog.account.dto.AccountInfoRequestDto;
 import efub.session.blog.account.service.AccountService;
 import efub.session.blog.comment.service.CommentService;
@@ -10,8 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import efub.session.blog.comment.domain.Comment;
 
 @Slf4j
 @Service

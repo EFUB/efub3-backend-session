@@ -4,8 +4,8 @@ import efub.session.blog.account.domain.Account;
 import efub.session.blog.heart.domain.CommentHeart;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.xml.stream.events.Comment;
-import java.awt.*;
+import efub.session.blog.comment.domain.Comment;
+import java.util.List;
 import java.util.Optional;
 
 public interface CommentHeartRepository extends JpaRepository<CommentHeart, Long> {

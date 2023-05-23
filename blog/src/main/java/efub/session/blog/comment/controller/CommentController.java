@@ -5,6 +5,7 @@ import efub.session.blog.comment.domain.Comment;
 import efub.session.blog.comment.dto.CommentModifyRequestDto;
 import efub.session.blog.comment.dto.CommentResponseDto;
 import efub.session.blog.comment.service.CommentService;
+import efub.session.blog.heart.service.CommentHeartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ import javax.validation.Valid;
 public class CommentController {
 
     private final CommentService commentService;    // 의존관계: CommentController -> CommentService
-    private final CommentService commentHeartService;
+    private final CommentHeartService commentHeartService;
 
     // ID를 기준으로 댓글 조회
     @GetMapping("/{commentId}")
@@ -41,27 +42,24 @@ public class CommentController {
     @ResponseStatus(value = HttpStatus.OK)
     public String delete(@PathVariable Long commentId, @RequestParam Long memberId) {
         commentService.deleteComment(commentId, memberId);
-        return "좋아요가 취소되었습니다.";
+        return "성공적으로 삭제가 완료되었습니다.";
     }
-    @PostMapping("/hearts")
+
+    // 댓글 좋아요 추가
+    @PostMapping("/hearts/{commentId}")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public String createCommentHeart(@PathVariable final Long commentId, @RequestBody final AccountInfoRequestDto requestDto){
+    public String createCommentHeart(@PathVariable final Long commentId, @RequestBody final AccountInfoRequestDto requestDto) {
         commentHeartService.create(commentId, requestDto);
         return "좋아요를 눌렀습니다.";
     }
 
-    @PutMapping
-    @ResponseStatus(HttpStatus.OK)
-    public CommentResponseDto updatePostComment(@PathVariable final Long commentId, @RequestBody @Valid final CommentResponseDto requestDto){
-        commentService.updateComment(requestDto, commentId);
-        Comment comment = commentService.findCommentById(commentId);
-        return CommentResponseDto.of(comment);
+    // 댓글 좋아요 삭제
+    @DeleteMapping("/hearts/{commentId}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public String deleteCommentHeart(@PathVariable final Long commentId, @RequestParam final Long accountId) {
+        commentHeartService.delete(commentId, accountId);
+        return "좋아요가 취소되었습니다.";
     }
 
-    @DeleteMapping
-    @ResponseStatus(HttpStatus.OK)
-    public String deleteComment(@PathVariable final Long commentId){
-        commentService.deleteComment(commentId);
-        return "성공적으로 삭제 되었습니다.";
-    }
+
 }

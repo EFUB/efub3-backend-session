@@ -15,12 +15,14 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CommentRequestDto {
 
-    private final Long accountId;
+    @NotNull(message = "작성자 ID를 입력해주세요.")
+    private Long accountId;
+
     @NotNull(message = "내용을 입력해주세요.")
     private String content;
 
     @Builder
-    public CommentResponseDto(Long accountId, String content){
+    public CommentRequestDto(Long accountId, String content) {
         this.accountId = accountId;
         this.content = content;
     }
