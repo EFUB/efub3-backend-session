@@ -35,13 +35,13 @@ public class AccountService {
                 .orElseThrow(() -> new EntityNotFoundException("해당 id를 가진 Account를 찾을 수 없습니다.id="+id));
     }
 
+
     public Long update(Long accountId, AccountUpdateRequestDto requestDto) {
         Account account = findAccountById(accountId);
         account.updateAccount(requestDto.getBio(), requestDto.getNickname());
         return account.getAccountId();
     }
 
-    @Transactional
     public void withdraw(Long accountId) {
         Account account = findAccountById(accountId);
         account.withdrawAccount();

@@ -15,13 +15,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class PostService {
     private final PostRepository postRepository;
     private final AccountRepository accountRepository;
 
     private final AccountService accountService;
 
-    @Transactional
     public Post addPost(PostRequestDto requestDto) {
         Account writer = accountRepository.findById(requestDto.getAccountId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 계정입니다."));
@@ -44,18 +44,20 @@ public class PostService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시글입니다."));
     }
 
-    public void removePost(Long postId, Long accountId) {
-        Post post = postRepository.findByPostIdAndAndWriter_AccountId(postId, accountId)
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 접근입니다."));
-        postRepository.delete(post);
-    }
-
     public Post modifyPost(Long postId, PostModifyRequestDto requestDto) {
         Post post = postRepository.findByPostIdAndAndWriter_AccountId(postId, requestDto.getAccountId())
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 접근입니다."));
         post.updatePost(requestDto);
         return post;
     }
+
+    public void removePost(Long postId, Long accountId) {
+        Post post = postRepository.findByPostIdAndAndWriter_AccountId(postId, accountId)
+                .orElseThrow(() -> new IllegalArgumentException("잘못된 접근입니다."));
+        postRepository.delete(post);
+    }
+
+
 
     @Transactional(readOnly = true)
     public List<Post> findPostListByWriter(Long accountId) {

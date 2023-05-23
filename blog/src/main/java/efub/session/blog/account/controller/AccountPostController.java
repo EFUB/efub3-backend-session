@@ -21,7 +21,7 @@ public class AccountPostController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public PostListResponseDto readAccountPosts(@PathVariable Long accountId) {
-        List<Post>postList = postService.findPostListByWriter(accountId);
+        List<Post> postList = postService.findPostListByWriter(accountId);
         return PostListResponseDto.of(postList);
     }
 }

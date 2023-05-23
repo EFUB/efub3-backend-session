@@ -24,7 +24,7 @@ public class Account {
     @Column(nullable = false)
     private String encodedPassword;
 
-    @Column(nullable = false, updatable = false, length = 16)
+    @Column(nullable = false, length = 16)
     private String nickname;
 
     private String bio;
