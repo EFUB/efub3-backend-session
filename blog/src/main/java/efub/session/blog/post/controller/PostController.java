@@ -1,5 +1,7 @@
 package efub.session.blog.post.controller;
 
+import efub.session.blog.heart.dto.HeartRequestDto;
+import efub.session.blog.heart.service.PostHeartService;
 import efub.session.blog.post.domain.Post;
 import efub.session.blog.post.dto.PostModifyRequestDto;
 import efub.session.blog.post.dto.PostRequestDto;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor // lombok
 public class PostController {
 
+    private final PostHeartService postHeartService;
     private final PostService postService;
 
     @PostMapping
@@ -54,5 +57,20 @@ public class PostController {
         Post post = postService.modifyPost(postId, requestDto);
         return PostResponseDto.from(post);
     }
+
+    @PostMapping("/{postId}/hearts")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public String createPostHeart(@PathVariable final Long postId, @RequestBody final HeartRequestDto requestDto) {
+        postHeartService.create(postId, requestDto.getAccountId());
+        return "좋아요를 눌렀습니다.";
+    }
+
+    @DeleteMapping("/{postId}/hearts")
+    @ResponseStatus(value = HttpStatus.OK)
+    public String deletePostHeart(@PathVariable Long postId, @RequestParam Long accountId){
+        postHeartService.delete(postId, accountId);
+        return "좋아요가 취소되었습니다.";
+    }
+
 
 }

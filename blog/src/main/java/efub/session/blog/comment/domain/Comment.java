@@ -1,6 +1,7 @@
 package efub.session.blog.comment.domain;
 
 import efub.session.blog.account.domain.Account;
+import efub.session.blog.heart.domain.CommentHeart;
 import efub.session.blog.post.domain.Post;
 import efub.session.blog.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
@@ -9,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity // 객체를 테이블과 매핑
 @Getter
@@ -29,6 +32,10 @@ public class Comment extends BaseTimeEntity {
     @JoinColumn(name = "account_id", nullable = false, updatable = false)
     private Account writer;
 
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true )
+    List<CommentHeart> commentHeartList = new ArrayList<>();
+
+    // @Builder
     @Builder // 매개변수의 의미 명확
     public Comment(String content, Post post, Account writer) {
         this.content = content;
@@ -36,5 +43,7 @@ public class Comment extends BaseTimeEntity {
         this.writer = writer;
     }
 
-    // @Builder
+    public void updateComment(String content) {
+        this.content = content;
+    }
 }
