@@ -14,8 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transaction
+@Transactional
+<<<<<<<<< Temporary merge branch 1
+=========
 @RequiredArgsConstructor
+>>>>>>>>> Temporary merge branch 2
 public class PostService {
 
     private final PostRepository postRepository;
