@@ -31,6 +31,9 @@ public class Post extends BaseTimeEntity {
     @JoinColumn(name = "account_id")
     private Account writer;
 
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PostHeart> postHeartList = new ArrayList<>();
+
     @Builder
     public Post(Long postId, String title, String content, Account writer) {
         this.postId = postId;

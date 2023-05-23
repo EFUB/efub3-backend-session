@@ -30,6 +30,10 @@ public class Comment extends BaseTimeEntity {
     @JoinColumn(name = "account_id", nullable = false, updatable = false)
     private Account writer;
 
+    // 2. comment domain에 엔티티 매핑
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<CommentHeart> commentLikeList = new ArrayList<>();
+
     @Builder
     public Comment(String content, Post post, Account writer) {
         this.content = content;
