@@ -36,6 +36,7 @@ public class FollowListResponseDto {
             return new FollowListResponseDto.SingleFollower(follow);
         }
     }
+
     // 팔로잉 한 명
     @Getter
     public static class SingleFollowing{
