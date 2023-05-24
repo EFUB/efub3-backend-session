@@ -41,4 +41,9 @@ public class Comment extends BaseTimeEntity {
         this.writer = writer;
     }
 
+    // update 메소드 추가
+    public void updateComment(String content) {
+        this.content = content;
+    }
+
 }

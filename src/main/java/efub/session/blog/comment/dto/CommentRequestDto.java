@@ -20,6 +20,12 @@ public class CommentRequestDto {
     @NotNull(message = "내용을 입력해주세요.")
     private String content;
 
+    @Builder
+    public CommentRequestDto(Long accountId, String content) {
+        this.accountId = accountId;
+        this.content = content;
+    }
+
     public Comment toEntity(Post post, Account writer) {
         return Comment.builder()
                 .post(post)
