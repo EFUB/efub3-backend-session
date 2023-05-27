@@ -22,7 +22,7 @@ public class CommentHeartService {
     private final AccountService accountService;
 
     public void create(Long commentId, AccountInfoRequestDto requestDto) {
-        Account account = accountService.findAccountById(requestDto.getAccountID());
+        Account account = accountService.findAccountById(requestDto.accountId());
         Comment comment = commentService.findCommentById(commentId);
         if (isExistsByWriterAndComment(account, comment)){
             throw new RuntimeException("이미 좋아요를 눌렀습니다.");
