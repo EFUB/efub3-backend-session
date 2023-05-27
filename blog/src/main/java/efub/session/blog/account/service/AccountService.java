@@ -1,9 +1,9 @@
-package efub.session.blog.account.service;
+package efub.session.blog.domain.account.service;
 
-import efub.session.blog.account.domain.Account;
-import efub.session.blog.account.dto.AccountUpdateRequestDto;
-import efub.session.blog.account.dto.SignUpRequestDto;
-import efub.session.blog.account.repository.AccountRepository;
+import efub.session.blog.domain.account.domain.Account;
+import efub.session.blog.domain.account.dto.request.AccountUpdateRequestDto;
+import efub.session.blog.domain.account.dto.request.SignUpRequestDto;
+import efub.session.blog.domain.account.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,5 +50,11 @@ public class AccountService {
     public void delete(Long accountId) {
         Account account = findAccountById(accountId);
         accountRepository.delete(account);
+    }
+
+    @Transactional(readOnly = true)
+    public Account findAccountByEmail(String email){
+        return accountRepository.findByEmail(email)
+                .orElseThrow(()->new EntityNotFoundException("해당 email을 가진 계정을 찾을 수 없습니다. email = "+email));
     }
 }
