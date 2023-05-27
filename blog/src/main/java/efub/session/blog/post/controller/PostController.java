@@ -1,6 +1,7 @@
 package efub.session.blog.post.controller;
 
 import efub.session.blog.heart.dto.HeartRequestDto;
+import efub.session.blog.heart.service.PostHeartService;
 import efub.session.blog.post.domain.Post;
 import efub.session.blog.post.dto.PostModifyRequestDto;
 import efub.session.blog.post.dto.PostRequestDto;
@@ -18,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostController {
     private final PostService postService;
+    private PostHeartService postHeartService;
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
@@ -68,7 +70,7 @@ public class PostController {
 
     @DeleteMapping("/{postId}/hearts")
     @ResponseStatus(value = HttpStatus.OK)
-    public String deletePostHeart(@PathVariable final Long postId, @RequestBody final Long accoutId){
+    public String deletePostHeart(@PathVariable final Long postId, @RequestBody final Long accountId){
         postHeartService.delete(postId, accountId);
         return "좋아요가 취소되었습니다.";
     }

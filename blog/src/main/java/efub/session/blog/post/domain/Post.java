@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.awt.*;
+import java.util.List;
 import java.util.ArrayList;
 
 @Entity
@@ -32,6 +32,7 @@ public class Post extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PostHeart> postHeartList = new ArrayList<>();
+    //private List<PostHeart> postHeartList = new ArrayList<>();
 
     @Builder
     public Post(Long postId, String title, String content, Account writer) {
