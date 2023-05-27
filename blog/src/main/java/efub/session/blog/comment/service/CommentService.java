@@ -72,8 +72,8 @@ public class CommentService {
 
     // 댓글 삭제
     @Transactional
-    public void deleteComment(Long commentId, Long memberId) {
-        Comment comment = commentRepository.findByCommentIdAndAndWriter_MemberId(commentId, memberId);
+    public void deleteComment(Long commentId, Long accountId) {
+        Comment comment = commentRepository.findByCommentIdAndAndWriter_AccountId(commentId, accountId);
         commentRepository.delete(comment);
     }
 
