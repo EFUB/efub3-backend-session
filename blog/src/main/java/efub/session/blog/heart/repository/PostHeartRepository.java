@@ -18,7 +18,7 @@ public interface PostHeartRepository extends JpaRepository<PostHeart, Long> {
 
 
     // 작성자와 게시글이 있는지 확인
-    boolean existByWriterAndPost(Account account, Post post);
+    boolean existsByWriterAndPost(Account account, Post post);
 
     // 작성자와 게시글 기준으로 postheart 조회
     Optional<PostHeart> findByWriterAndPost(Account account, Post post);
