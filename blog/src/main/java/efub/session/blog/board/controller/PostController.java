@@ -24,21 +24,22 @@ public class PostController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public PostResponseDto postAdd(@RequestBody PostRequestDto postRequestDto){
         Post post = postService.addPost(postRequestDto);
-        return new PostResponseDto(post);
+        return PostResponseDto.of(post);
+
     }
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
     public List<PostResponseDto> postListFind(){
         List<Post> postList = postService.findPostList();
-        return postList.stream().map(PostResponseDto::new).collect(Collectors.toList());
+        return postList.stream().map(PostResponseDto::of).collect(Collectors.toList());
     }
 
     @GetMapping("/{postId}")
     @ResponseStatus(value = HttpStatus.OK)
     public PostResponseDto postFind(@PathVariable Long postId){
         Post post = postService.findPost(postId);
-        return new PostResponseDto(post);
+        return PostResponseDto.of(post);
     }
 
     @DeleteMapping("/{postId}")
@@ -52,6 +53,6 @@ public class PostController {
     @ResponseStatus(value = HttpStatus.OK)
     public PostResponseDto postModify(@PathVariable Long postId,@RequestBody PostModifyRequestDto requestDto){
         Post post = postService.modifyPost(postId, requestDto);
-        return new PostResponseDto(post);
+        return PostResponseDto.of(post);
     }
 }

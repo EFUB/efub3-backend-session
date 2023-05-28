@@ -25,6 +25,12 @@ public class AccountService {
         return account.getAccountId();
     }
 
+    @Transactional(readOnly = true)
+    public Account findByEmail(String email){
+        return accountRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("해당 email 를 가진 Account 를 찾을 수 없습니다. email ="+email));
+    }
+
     public Long update(Long accountId, AccountUpdateRequestDto requestDto){
         Account account = findAccountById(accountId);
         account.updateAccount(requestDto.getBio(), requestDto.getNickname());
