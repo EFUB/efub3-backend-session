@@ -50,5 +50,10 @@ public class AccountService {
             return accountRepository.existsByEmail(email);
         }
 
-
+        @Transactional(readOnly = true)
+    public Account findAccountByEmail(String email){
+            return accountRepository.findByEmail(email)
+                    .orElseThrow(()-> new EntityNotFoundException("해당 email을 가진 게정을 찾을 수 잆습니다." +
+                            "email = " + email));
+        }
     }
