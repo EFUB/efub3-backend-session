@@ -51,5 +51,11 @@ public class AccountService {
         Account account = findAccountById(accountId);
         accountRepository.delete(account);
     }
+
+    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+    public Account findAccountByEmail(String email){ // follow 기능 때문에 추가됐음
+        return accountRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("해당 email 를 가진 계정을 찾을 수 없습니다. email =" + email));
+    }
 }
 
