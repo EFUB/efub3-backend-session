@@ -32,9 +32,8 @@ public class AccountService {
     @Transactional(readOnly = true)
     public Account findAccountById(Long id) {
         return accountRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("해당 id를 가진 Account를 찾을 수 없습니다.id="+id));
+                .orElseThrow(() -> new EntityNotFoundException("해당 id를 가진 Account를 찾을 수 없습니다. id="+id));
     }
-
 
     public Long update(Long accountId, AccountUpdateRequestDto requestDto) {
         Account account = findAccountById(accountId);
@@ -50,5 +49,11 @@ public class AccountService {
     public void delete(Long accountId) {
         Account account = findAccountById(accountId);
         accountRepository.delete(account);
+    }
+
+    @Transactional(readOnly = true)
+    public Account findAccountByEmail(String email) {
+        return accountRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("해당 email을 가진 계정을 찾을 수 없습니다. email=" + email));
     }
 }

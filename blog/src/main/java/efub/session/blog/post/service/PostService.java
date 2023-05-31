@@ -57,8 +57,6 @@ public class PostService {
         postRepository.delete(post);
     }
 
-
-
     @Transactional(readOnly = true)
     public List<Post> findPostListByWriter(Long accountId) {
         Account writer = accountService.findAccountById(accountId);

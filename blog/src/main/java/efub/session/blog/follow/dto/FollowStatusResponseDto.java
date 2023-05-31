@@ -1,4 +1,4 @@
-package efub.session.blog.account.dto;
+package efub.session.blog.follow.dto;
 
 import efub.session.blog.account.domain.Account;
 import lombok.AccessLevel;
@@ -8,17 +8,22 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class AccountResponseDto {
+public class FollowStatusResponseDto {
     private Long accountId;
-    private String email;
     private String nickname;
-    private String bio;
+    private String email;
+    private String status;
 
     @Builder
-    public AccountResponseDto(Account account) {
+    public FollowStatusResponseDto(Account account, Boolean isFollow) {
         this.accountId = account.getAccountId();
-        this.email = account.getEmail();
         this.nickname = account.getNickname();
-        this.bio = account.getBio();
+        this.email = account.getEmail();
+
+        if(!isFollow){
+            this.status = "UNFOLLOW";
+        }else{
+            this.status = "FOLLOW";
+        }
     }
 }
