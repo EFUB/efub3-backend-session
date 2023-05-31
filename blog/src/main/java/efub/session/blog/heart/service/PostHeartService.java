@@ -66,7 +66,7 @@ public class PostHeartService {
 
     @Transactional(readOnly = true) //** ?? 이거 기능?
     public boolean isExistsByWriterAndPost(Account account, Post post) {
-        return postHeartRepository.existByWriterAndPost(account,post);
+        return postHeartRepository.existsByWriterAndPost(account,post);
     }
 
     @Transactional(readOnly = true) // 좋아요 수 세기

@@ -40,8 +40,8 @@ public class CommentController {
     // 댓글 삭제
     @DeleteMapping("/{commentId}")
     @ResponseStatus(value = HttpStatus.OK)
-    public String delete(@PathVariable Long commentId, @RequestParam Long memberId) {
-        commentService.deleteComment(commentId, memberId);
+    public String delete(@PathVariable Long commentId, @RequestParam Long accountId) {
+        commentService.deleteComment(commentId, accountId);
         return "성공적으로 삭제가 완료되었습니다.";
     }
 
