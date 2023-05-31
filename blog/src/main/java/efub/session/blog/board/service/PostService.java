@@ -1,14 +1,14 @@
-package efub.session.blog.post.service;
+package efub.session.blog.board.service;
 
 
 import efub.session.blog.account.domain.Account;
-import efub.session.blog.account.exception.NotExistAccountException;
-import efub.session.blog.account.repository.AccountRepository;
-import efub.session.blog.post.domain.Post;
-import efub.session.blog.post.dto.PostModifyRequestDto;
-import efub.session.blog.post.dto.PostRequestDto;
-import efub.session.blog.post.exception.NotExistPostException;
-import efub.session.blog.post.repository.PostRepository;
+import efub.session.blog.account.service.AccountService;
+import efub.session.blog.board.domain.Post;
+import efub.session.blog.board.dto.request.PostModifyRequestDto;
+import efub.session.blog.board.dto.request.PostRequestDto;
+import efub.session.blog.board.exception.NotExistPostException;
+
+import efub.session.blog.board.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,12 +19,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
-    private final AccountRepository accountRepository;
+    private final AccountService accountService;
 
     @Transactional
     public Post addPost(PostRequestDto postRequestDto) {
-        Account writer = accountRepository.findById(postRequestDto.getAccountId())
-                .orElseThrow(NotExistAccountException::new);
+        Account writer = accountService.findAccountById(postRequestDto.getAccountId());
         return postRepository.save(
                 Post.builder()
                         .title(postRequestDto.getTitle())
@@ -34,12 +33,18 @@ public class PostService {
         );
     }
 
+
     @Transactional(readOnly = true)
     public List<Post> findPostList() {
         return postRepository.findAll();
     }
 
     @Transactional(readOnly = true)
+    public List<Post> findByWriter(Long accountId) {
+        Account account = accountService.findAccountById(accountId);
+        return postRepository.findByWriter(account);
+    }
+
 
     public Post findPost(Long postId) {
         return postRepository.findById(postId).orElseThrow(NotExistPostException::new);

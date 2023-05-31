@@ -1,17 +1,16 @@
-package efub.session.blog.post.controller;
+package efub.session.blog.board.controller;
 
 
-import efub.session.blog.post.domain.Post;
-import efub.session.blog.post.dto.PostModifyRequestDto;
-import efub.session.blog.post.dto.PostRequestDto;
-import efub.session.blog.post.dto.PostResponseDto;
-import efub.session.blog.post.service.PostService;
+import efub.session.blog.board.domain.Post;
+import efub.session.blog.board.dto.request.PostModifyRequestDto;
+import efub.session.blog.board.dto.request.PostRequestDto;
+import efub.session.blog.board.dto.response.PostResponseDto;
+import efub.session.blog.board.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,21 +24,22 @@ public class PostController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public PostResponseDto postAdd(@RequestBody PostRequestDto postRequestDto){
         Post post = postService.addPost(postRequestDto);
-        return new PostResponseDto(post);
+        return PostResponseDto.of(post);
+
     }
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
     public List<PostResponseDto> postListFind(){
         List<Post> postList = postService.findPostList();
-        return postList.stream().map(PostResponseDto::new).collect(Collectors.toList());
+        return postList.stream().map(PostResponseDto::of).collect(Collectors.toList());
     }
 
     @GetMapping("/{postId}")
     @ResponseStatus(value = HttpStatus.OK)
     public PostResponseDto postFind(@PathVariable Long postId){
         Post post = postService.findPost(postId);
-        return new PostResponseDto(post);
+        return PostResponseDto.of(post);
     }
 
     @DeleteMapping("/{postId}")
@@ -53,6 +53,6 @@ public class PostController {
     @ResponseStatus(value = HttpStatus.OK)
     public PostResponseDto postModify(@PathVariable Long postId,@RequestBody PostModifyRequestDto requestDto){
         Post post = postService.modifyPost(postId, requestDto);
-        return new PostResponseDto(post);
+        return PostResponseDto.of(post);
     }
 }
