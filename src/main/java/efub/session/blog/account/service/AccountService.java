@@ -28,17 +28,6 @@ public class AccountService {
 
     }
 
-    @Transactional(readOnly = true) // 읽기만 하는 동작이므로, readOnly = true를 붙여 메모리사용을 줄인다
-    public boolean existsByEmail(String email){
-        return accountRepository.existsByEmail(email);
-    }
-
-    @Transactional(readOnly = true)
-    public Account findAccountById(Long id){
-        return accountRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("해당 id를 가진 Account를 찾을 수 없습니다. id = "+id));
-    }
-
     public Long update(Long accountId, AccountUpdateRequestDto requestDto) {
         Account account = findAccountById(accountId);
         account.updateAccount(requestDto.getBio(), requestDto.getNickname());
@@ -55,4 +44,29 @@ public class AccountService {
         Account account = findAccountById(accountId);   // 해당 id를 가진 Account 객체를 찾아와서
         accountRepository.delete(account);  // 그 객체를 저장소에서 삭제
     }
+
+
+    /*
+    readonly 메소드들
+     */
+    // 해당 이메일을 가진 계정이 존재하는지 여부를 리턴
+    @Transactional(readOnly = true) // 읽기만 하는 동작이므로, readOnly = true를 붙여 메모리사용을 줄인다
+    public boolean existsByEmail(String email){
+        return accountRepository.existsByEmail(email);
+    }
+
+    // 아이디를 기준으로 계정 하나 찾기
+    @Transactional(readOnly = true)
+    public Account findAccountById(Long id){
+        return accountRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("해당 id를 가진 Account를 찾을 수 없습니다. id = "+id));
+    }
+
+    // 이메일을 기준으로 계정 하나 찾기
+    @Transactional(readOnly = true)
+    public Account findAccountByEmail(String email) {
+        return accountRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("해당 email을 가진 Account를 찾을 수 없습니다. email = " + email));
+    }
+
 }
