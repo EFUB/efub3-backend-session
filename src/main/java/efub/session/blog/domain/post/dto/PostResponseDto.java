@@ -2,12 +2,11 @@ package efub.session.blog.domain.post.dto;
 
 
 import efub.session.blog.domain.post.domain.Post;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
+
 
 @Getter
 @NoArgsConstructor
